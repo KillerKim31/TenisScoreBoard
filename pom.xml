@@ -21,8 +21,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>2.1.214</version>
-      <scope>test</scope>
+      <version>2.2.224</version> <!-- используйте последнюю версию -->
     </dependency>
 
     <!-- Hibernate Core (JPA, ORM для SQL) -->
@@ -53,6 +52,14 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.16.2</version>
+    </dependency>
+
+    <!-- Lombok Util -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.42</version>
+      <scope>compile</scope>
     </dependency>
 
   </dependencies>
