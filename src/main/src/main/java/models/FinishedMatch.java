@@ -30,17 +30,10 @@ public class FinishedMatch {
     @JoinColumn(name = "winner_id", nullable = false)
     private Player winner;
 
-    @Column(name = "score", nullable = false)
-    private String score;
-
-    @Column(name = "played_at", nullable = false)
-    private LocalDateTime playedAt = LocalDateTime.now();
-
-    public FinishedMatch(Player player1, Player player2, Player winner, String score) {
+    public FinishedMatch(Player player1, Player player2, Player winner) {
         this.player1 = player1;
         this.player2 = player2;
         this.winner  = winner;
-        this.score   = score;
     }
 
 }

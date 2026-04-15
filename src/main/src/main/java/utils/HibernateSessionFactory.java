@@ -35,13 +35,13 @@ public class HibernateSessionFactory {
             playerDao.save(player6);
             playerDao.save(player7);
 
-            matchesDao.save(new FinishedMatch(player1, player2, player1, "6:3"));
-            matchesDao.save(new FinishedMatch(player3, player4, player4, "5:7"));
-            matchesDao.save(new FinishedMatch(player5, player6, player5, "9:7"));
-            matchesDao.save(new FinishedMatch(player7, player5, player5, "7:9"));
-            matchesDao.save(new FinishedMatch(player3, player1, player1, "1:6"));
-            matchesDao.save(new FinishedMatch(player1, player7, player7, "6:4"));
-            matchesDao.save(new FinishedMatch(player4, player3, player4, "2:6"));
+            matchesDao.save(new FinishedMatch(player1, player2, player1));
+            matchesDao.save(new FinishedMatch(player3, player4, player4));
+            matchesDao.save(new FinishedMatch(player5, player6, player5));
+            matchesDao.save(new FinishedMatch(player7, player5, player5));
+            matchesDao.save(new FinishedMatch(player3, player1, player1));
+            matchesDao.save(new FinishedMatch(player1, player7, player7));
+            matchesDao.save(new FinishedMatch(player4, player3, player4));
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }

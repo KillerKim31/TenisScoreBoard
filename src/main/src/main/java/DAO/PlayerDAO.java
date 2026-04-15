@@ -32,4 +32,8 @@ public class PlayerDAO implements BaseDAO<Player> {
         return execute(session -> session.createQuery("FROM player", Player.class).getResultList());
     }
 
+    public Player findByName(String name) throws DatabaseException {
+        return execute(session -> session.get(Player.class, name));
+    }
+
 }
