@@ -1,11 +1,12 @@
 package Service.Scrore;
 
-import lombok.Getter;
-
 public class SetScore extends Score<Integer> {
 
-    @Getter
     private GameScore<?> currentGame;   // Экземпляр счета (идет по геймам и может становиться тай брейком)
+
+    public GameScore<?> getCurrentGame() {
+        return currentGame;
+    }
 
     public SetScore() {
         this.currentGame = new GameRegularScore();

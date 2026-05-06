@@ -17,10 +17,11 @@ public class OngoingMatchesService {
         return INSTANCE;
     }
 
-    public void createNewMatch(Player player1, Player player2, int setsInMatch) {
+    public UUID createNewMatch(Player player1, Player player2, int setsInMatch) {
         UUID uuid = UUID.randomUUID();
         CurrentMatch currentMatch = new CurrentMatch(uuid, player1, player2, setsInMatch);
         currentMatches.put(uuid, currentMatch);
+        return uuid;
     }
 
     public void remove(UUID uuid) {

@@ -1,8 +1,5 @@
 package Service.Scrore;
 
-import lombok.Getter;
-
-@Getter
 public enum GameRegularPlayerPoints {
 
     ZERO("0"),
@@ -23,6 +20,10 @@ public enum GameRegularPlayerPoints {
 
     private GameRegularPlayerPoints(String pointCode) {
         this.pointCode = pointCode;
+    }
+
+    public String getPointCode() {
+        return pointCode;
     }
 
 }
