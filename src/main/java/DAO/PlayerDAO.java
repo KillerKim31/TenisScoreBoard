@@ -1,6 +1,7 @@
 package DAO;
 
 import Exceptions.DatabaseException;
+import models.FinishedMatch;
 import models.Player;
 
 import java.util.List;
@@ -29,11 +30,19 @@ public class PlayerDAO implements BaseDAO<Player> {
 
     @Override
     public List<Player> findAll() throws DatabaseException {
-        return execute(session -> session.createQuery("FROM player", Player.class).getResultList());
+        return execute(session -> session.createQuery("FROM Player", Player.class).getResultList());
     }
 
     public Player findByName(String name) throws DatabaseException {
-        return execute(session -> session.get(Player.class, name));
+        String hqlCommand = "FROM Player WHERE UPPER(name) LIKE :name";
+        List<Player> results = execute(session -> session.createQuery(hqlCommand, Player.class)
+                .setParameter("name", "%" + name.toUpperCase().trim() + "%")
+                .getResultList());
+
+        if (results.isEmpty()) {
+            return null;
+        }
+        return results.get(0);
     }
 
 }

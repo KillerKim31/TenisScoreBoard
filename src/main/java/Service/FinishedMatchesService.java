@@ -14,26 +14,15 @@ public class FinishedMatchesService {
 
     public void persist(CurrentMatch currentMatch) throws DatabaseException {
 
-        Player firstPlayer = null;
-        try {
+        Player firstPlayer = playerDao.findByName(currentMatch.getFirstPlayer().getName());
+        Player secondPlayer = playerDao.findByName(currentMatch.getSecondPlayer().getName());
+        if (firstPlayer == null) {
             firstPlayer = currentMatch.getFirstPlayer();
             playerDao.save(firstPlayer);
-        } catch (Exception e) {
-            Player player = playerDao.findByName(currentMatch.getFirstPlayer().getName());
-            if (player != null) {
-                firstPlayer = player;
-            }
         }
-
-        Player secondPlayer = null;
-        try {
+        if (secondPlayer == null) {
             secondPlayer = currentMatch.getSecondPlayer();
             playerDao.save(secondPlayer);
-        } catch (Exception e) {
-            Player player = playerDao.findByName(currentMatch.getSecondPlayer().getName());
-            if (player != null) {
-                secondPlayer = player;
-            }
         }
 
         Player winner;

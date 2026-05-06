@@ -1,18 +1,22 @@
 package Service.Scrore;
 
-import lombok.Getter;
-
 import java.util.*;
 
 public class MatchScore extends Score<Integer> {
 
     private final Map<Integer, List<Integer>> gameResultsInSet;
 
-    @Getter
     private SetScore currentSet;
     private final int setsForWin;
-    @Getter
     private int serve;
+
+    public SetScore getCurrentSet() {
+        return currentSet;
+    }
+
+    public int getServe() {
+        return serve;
+    }
 
     public MatchScore(int setsForWin) {
         this.gameResultsInSet = new HashMap<>();
@@ -47,6 +51,7 @@ public class MatchScore extends Score<Integer> {
         gameScore.add(currentSet.getPlayerScore(0));
         gameScore.add(currentSet.getPlayerScore(1));
         gameResultsInSet.put(getPlayerScore(0) + getPlayerScore(1), gameScore);
+        this.currentSet = new SetScore();
 
         if (getPlayerScore(playerNumber) == setsForWin) {
             if (playerNumber == 0) {
@@ -57,12 +62,23 @@ public class MatchScore extends Score<Integer> {
             }
         }
 
-        this.currentSet = new SetScore();
         return StateScore.ONGOING;
 
     }
 
-    public Integer getGameResultsInSet(int setNumber, int playerNumber) {
+    public int getCountWonSetsPlayer(int playerNumber) {
+        int wonSets = 0;
+        for (List<Integer> sets : gameResultsInSet.values()) {
+            int playerScore   = sets.get(playerNumber);
+            int opponentScore = sets.get(Math.abs(1 - playerNumber));
+            if (playerScore > opponentScore) {
+                wonSets++;
+            }
+        }
+        return wonSets;
+    }
+
+    public int getGameResultsInSet(int setNumber, int playerNumber) {
         try {
             return gameResultsInSet.get(setNumber).get(playerNumber);
         } catch (NullPointerException e) {
